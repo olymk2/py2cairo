@@ -1,5 +1,5 @@
 -*- mode: m4 -*-
-AC_PREREQ(2.59)
+AC_PREREQ([2.69])
 
 # the pycairo version number
 m4_define(pycairo_version_major, 1)
@@ -11,9 +11,7 @@ m4_define(pycairo_version, pycairo_version_major.pycairo_version_minor.pycairo_v
 m4_define(cairo_required_version, 1.10.0)
 m4_define(xpyb_required_version, 1.3)
 
-AC_INIT([py2cairo],
-	[pycairo_version],
-	[http://bugs.freedesktop.org/enter_bug.cgi?product=pycairo])
+AC_INIT([py2cairo],[pycairo_version],[http://bugs.freedesktop.org/enter_bug.cgi?product=pycairo])
 
 AC_DEFINE(PYCAIRO_VERSION_MAJOR, pycairo_version_major, [pycairo major version])
 AC_DEFINE(PYCAIRO_VERSION_MINOR, pycairo_version_minor, [pycairo minor version])
@@ -84,10 +82,7 @@ yes)
     AC_MSG_CHECKING(whether $CC accepts -fno-strict-aliasing)
      ac_save_cc="$CC"
      CC="$CC -fno-strict-aliasing"
-     AC_TRY_RUN([int main() { return 0; }],
-     ac_cv_no_strict_aliasing_ok=yes,
-     ac_cv_no_strict_aliasing_ok=no,
-     ac_cv_no_strict_aliasing_ok=no)
+     AC_RUN_IFELSE([AC_LANG_SOURCE([[int main() { return 0; }]])],[ac_cv_no_strict_aliasing_ok=yes],[ac_cv_no_strict_aliasing_ok=no],[ac_cv_no_strict_aliasing_ok=no])
      CC="$ac_save_cc"
     AC_MSG_RESULT($ac_cv_no_strict_aliasing_ok)
     if test $ac_cv_no_strict_aliasing_ok = yes
