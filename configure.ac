@@ -23,6 +23,7 @@ AC_CONFIG_SRCDIR([src/pycairo.h])
 AC_CONFIG_HEADERS(src/config.h)
 
 AM_INIT_AUTOMAKE([1.9.6 -Wall])
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 # Options ---
 
@@ -62,7 +63,7 @@ AC_C_CONST
 # add gcc debugging options
 changequote(,)dnl
 if test "x$GCC" = xyes; then
-  case " $CFLAGS " in
+ case " $CFLAGS " in
   *[\	\ ]-std=c99[\	\ ]*) ;;
   *[\	\ ]-std=c9x[\	\ ]*) ;;
   *) CFLAGS="$CFLAGS -std=c99" ;;
